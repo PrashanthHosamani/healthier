@@ -17,7 +17,7 @@ The application follows RESTful API principles and uses JWT-based authentication
 
 ## Tech Stack
 
-- Python 3.x
+- Python 3.13.1
 - Django
 - Django REST Framework (DRF)
 - PostgreSQL
