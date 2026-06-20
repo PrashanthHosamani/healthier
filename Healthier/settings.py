@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,10 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g^65wt=5er9vwdl!1y(@^$^ffy0lh7o^!+^%e#@x2blemjlh0m'
+
+SECRET_KEY = config("SECRET_KEY")
+
+DEBUG = config("DEBUG", cast=bool)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -122,23 +124,14 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DATABASES = {
-
-    'default': {
-
-        'ENGINE': 'django.db.backends.postgresql',
-
-        'NAME': 'healthier_db',
-
-        'USER': 'apple',
-
-        'PASSWORD': 'pradeephosamani',
-
-        'HOST': 'localhost',
-
-        'PORT': '5432',
-
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DB_NAME"),
+        "USER": config("DB_USER"),
+        "PASSWORD": config("DB_PASSWORD"),
+        "HOST": config("DB_HOST"),
+        "PORT": config("DB_PORT"),
     }
-
 }
 
 REST_FRAMEWORK = {
